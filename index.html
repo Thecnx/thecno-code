@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="zh-TW" class="dark scroll-smooth">
 <head>
@@ -835,15 +836,16 @@
             }
         });
 
-        urlPhotoBtn.addEventListener('click', () => {
-            const url = prompt('請貼上圖片 URL 網址:', profileImg.src);
-            if (url && url.trim() !== '') {
-                profileImg.src = 79405.jpg  url.trim();
-                showToast('已更新個人照片網址！', 'fa-image', 'text-neonCyan');
-            }
-        });
+       <main class="container">
 
-        // -------------------------------------------------------------
+        <!-- 1. 個人簡介與照片區 -->
+        <section class="card profile-card">
+            <div class="photo-frame">
+                <!-- 👇 將下方 src 換成你的個人照片檔案路徑（例如 photo.jpg）或圖片網址即可 -->
+                <img src="79405.jpg" alt="張國榮 個人照片">
+            </div>
+
+          --------------------------------------------------
         // 6. WEB AUDIO API - GUITAR CHORD SYNTHESIZER
         // -------------------------------------------------------------
         let audioCtx = null;
