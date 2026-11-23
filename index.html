@@ -4,16 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>林奕澤 Lin Yi-Ze | 數位多媒體 Portfolio</title>
-    
-    <!-- Google Fonts -->
+
+    <!-- Fonts & Icons -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600&family=Plus+Jakarta+Sans:wght@300;400;600;700;800&family=Noto+Sans+TC:wght@300;400;500;700;900&display=swap" rel="stylesheet">
-    
-    <!-- FontAwesome Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600&family=Plus+Jakarta+Sans:wght@400;600;700;800&family=Noto+Sans+TC:wght@400;500;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
-    <!-- Tailwind CSS CDN -->
+
+    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
@@ -27,26 +25,10 @@
                     colors: {
                         darkBg: '#090a0f',
                         cardBg: '#13151f',
-                        cardHover: '#1c1f2e',
                         neonPurple: '#8b5cf6',
                         neonCyan: '#06b6d4',
                         neonPink: '#ec4899',
                         accentOrange: '#f97316'
-                    },
-                    animation: {
-                        'pulse-slow': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
-                        'float': 'float 4s ease-in-out infinite',
-                        'glow': 'glow 2s ease-in-out infinite alternate',
-                    },
-                    keyframes: {
-                        float: {
-                            '0%, 100%': { transform: 'translateY(0px)' },
-                            '50%': { transform: 'translateY(-10px)' },
-                        },
-                        glow: {
-                            '0%': { boxShadow: '0 0 15px rgba(139, 92, 246, 0.3)' },
-                            '100%': { boxShadow: '0 0 30px rgba(6, 182, 212, 0.6)' },
-                        }
                     }
                 }
             }
@@ -54,32 +36,11 @@
     </script>
 
     <style>
-        /* Custom scrollbar styling */
-        ::-webkit-scrollbar {
-            width: 8px;
-        }
-        ::-webkit-scrollbar-track {
-            background: #090a0f;
-        }
-        ::-webkit-scrollbar-thumb {
-            background: #26293b;
-            border-radius: 4px;
-        }
-        ::-webkit-scrollbar-thumb:hover {
-            background: #8b5cf6;
-        }
-        
-        /* Glassmorphism utilities */
         .glass-card {
-            background: rgba(19, 21, 31, 0.75);
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
+            background: rgba(19, 21, 31, 0.78);
+            backdrop-filter: blur(14px);
             border: 1px solid rgba(255, 255, 255, 0.08);
         }
-        .glass-card:hover {
-            border-color: rgba(139, 92, 246, 0.4);
-        }
-        
         .gradient-text {
             background: linear-gradient(135deg, #a78bfa 0%, #38bdf8 50%, #f472b6 100%);
             -webkit-background-clip: text;
@@ -87,1067 +48,437 @@
         }
     </style>
 </head>
-<body class="bg-darkBg text-slate-100 font-sans antialiased overflow-x-hidden selection:bg-neonPurple selection:text-white">
+<body class="bg-darkBg text-slate-100 font-sans antialiased overflow-x-hidden">
 
-    <!-- Canvas Interactive Background -->
-    <canvas id="particle-canvas" class="fixed top-0 left-0 w-full h-full pointer-events-none z-0 opacity-40"></canvas>
-
-    <!-- Navigation Bar -->
-    <header class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 backdrop-blur-md bg-darkBg/80 border-b border-slate-800/60" id="navbar">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
-            
-            <!-- Logo / Brand -->
-            <a href="#home" class="flex items-center space-x-3 group">
-                <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-neonPurple to-neonCyan p-0.5 flex items-center justify-center shadow-lg shadow-neonPurple/20 group-hover:scale-105 transition-transform">
-                    <div class="w-full h-full bg-darkBg rounded-[10px] flex items-center justify-center">
-                        <span class="font-black text-transparent bg-clip-text bg-gradient-to-r from-neonPurple to-neonCyan text-lg">YZ</span>
-                    </div>
+    <!-- 導覽列 -->
+    <header class="fixed top-0 inset-x-0 z-50 backdrop-blur-md bg-darkBg/85 border-b border-slate-800/60">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 h-18 py-4 flex items-center justify-between">
+            <a href="#home" class="flex items-center space-x-3">
+                <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-neonPurple to-neonCyan p-0.5">
+                    <div class="w-full h-full bg-darkBg rounded-[10px] flex items-center justify-center font-black text-neonCyan">YZ</div>
                 </div>
-                <div class="flex flex-col">
-                    <span class="font-bold text-lg tracking-wider text-white group-hover:text-neonCyan transition-colors">林奕澤 <span class="text-xs font-mono text-neonPurple ml-1">blvckx3n</span></span>
-                    <span class="text-xs text-slate-400 font-mono">Digital Multimedia</span>
+                <div>
+                    <div class="font-bold text-white">林奕澤 <span class="text-xs font-mono text-neonPurple">blvckx3n</span></div>
+                    <div class="text-xs text-slate-400 font-mono">Digital Multimedia</div>
                 </div>
             </a>
 
-            <!-- Desktop Nav Items -->
-            <nav class="hidden md:flex items-center space-x-1">
-                <a href="#home" class="nav-link px-4 py-2 rounded-lg text-sm font-medium text-slate-300 hover:text-white hover:bg-slate-800/50 transition-all">首頁</a>
-                <a href="#about" class="nav-link px-4 py-2 rounded-lg text-sm font-medium text-slate-300 hover:text-white hover:bg-slate-800/50 transition-all">關於我</a>
-                <a href="#skills" class="nav-link px-4 py-2 rounded-lg text-sm font-medium text-slate-300 hover:text-white hover:bg-slate-800/50 transition-all">技能與興趣</a>
-                <a href="#contact" class="nav-link px-4 py-2 rounded-lg text-sm font-medium text-slate-300 hover:text-white hover:bg-slate-800/50 transition-all">聯繫方式</a>
+            <nav class="hidden md:flex items-center space-x-2 text-sm">
+                <a href="#home" class="px-4 py-2 rounded-lg text-slate-300 hover:text-white hover:bg-slate-800/60">首頁</a>
+                <a href="#about" class="px-4 py-2 rounded-lg text-slate-300 hover:text-white hover:bg-slate-800/60">關於我</a>
+                <a href="#skills" class="px-4 py-2 rounded-lg text-slate-300 hover:text-white hover:bg-slate-800/60">技能與興趣</a>
+                <a href="#contact" class="px-4 py-2 rounded-lg text-slate-300 hover:text-white hover:bg-slate-800/60">聯繫方式</a>
             </nav>
 
-            <!-- Action Button & Mobile Menu Toggle -->
-            <div class="flex items-center space-x-3">
-                <a href="#contact" class="hidden sm:inline-flex items-center px-4 py-2 text-xs font-semibold uppercase tracking-wider rounded-lg bg-gradient-to-r from-neonPurple to-neonCyan text-white shadow-md shadow-neonPurple/20 hover:shadow-neonPurple/40 hover:scale-105 transition-all">
-                    <i class="fa-solid fa-paper-plane mr-2 text-xs"></i> 聯絡我
-                </a>
-
-                <button id="mobile-menu-btn" class="md:hidden p-2.5 rounded-lg bg-slate-800 text-slate-300 hover:text-white focus:outline-none" aria-label="Toggle Menu">
-                    <i class="fa-solid fa-bars text-xl"></i>
-                </button>
-            </div>
+            <button id="mobile-menu-btn" class="md:hidden p-2 rounded-lg bg-slate-800 text-slate-300" aria-label="選單">
+                <i class="fa-solid fa-bars text-lg"></i>
+            </button>
         </div>
 
-        <!-- Mobile Drawer Menu -->
-        <div id="mobile-menu" class="hidden md:hidden bg-cardBg/95 backdrop-blur-xl border-b border-slate-800 px-4 pt-2 pb-6 space-y-2">
-            <a href="#home" class="mobile-nav-link block px-4 py-3 rounded-lg text-base font-medium text-slate-300 hover:text-white hover:bg-slate-800">首頁</a>
-            <a href="#about" class="mobile-nav-link block px-4 py-3 rounded-lg text-base font-medium text-slate-300 hover:text-white hover:bg-slate-800">關於我</a>
-            <a href="#skills" class="mobile-nav-link block px-4 py-3 rounded-lg text-base font-medium text-slate-300 hover:text-white hover:bg-slate-800">技能與興趣</a>
-            <a href="#contact" class="mobile-nav-link block px-4 py-3 rounded-lg text-base font-medium text-slate-300 hover:text-white hover:bg-slate-800">聯繫方式</a>
+        <div id="mobile-menu" class="hidden md:hidden bg-cardBg border-b border-slate-800 px-4 py-3 space-y-1 text-sm">
+            <a href="#home" class="mobile-link block px-3 py-2 rounded-lg hover:bg-slate-800">首頁</a>
+            <a href="#about" class="mobile-link block px-3 py-2 rounded-lg hover:bg-slate-800">關於我</a>
+            <a href="#skills" class="mobile-link block px-3 py-2 rounded-lg hover:bg-slate-800">技能與興趣</a>
+            <a href="#contact" class="mobile-link block px-3 py-2 rounded-lg hover:bg-slate-800">聯繫方式</a>
         </div>
     </header>
 
-    <main class="relative z-10">
-
-        <!-- SECTION 1: HERO / 首頁 -->
-        <section id="home" class="min-h-screen flex items-center justify-center pt-24 pb-16 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
-            <div class="max-w-5xl mx-auto text-center space-y-8">
-                
-                <!-- Status Pill -->
-                <div class="inline-flex items-center space-x-2 px-4 py-2 rounded-full glass-card border border-slate-700/60 shadow-inner animate-float">
-                    <span class="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse"></span>
-                    <span class="text-xs font-mono tracking-wide text-slate-300">數位多媒體專攻 ‧ 音樂與運動生活</span>
+    <main>
+        <!-- 1. 首頁 -->
+        <section id="home" class="min-h-screen flex items-center justify-center pt-24 pb-16 px-4 text-center">
+            <div class="max-w-4xl mx-auto space-y-6">
+                <div class="inline-flex items-center space-x-2 px-4 py-1.5 rounded-full glass-card text-xs font-mono text-slate-300">
+                    <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
+                    <span>數位多媒體專攻 ‧ 音樂與運動生活</span>
                 </div>
 
-                <!-- Main Headline -->
-                <div class="space-y-4">
-                    <h1 class="text-4xl sm:text-6xl md:text-7xl font-extrabold text-white tracking-tight leading-tight">
-                        你好，我是 <span class="gradient-text">林奕澤</span>
-                    </h1>
-                    <div class="h-12 flex items-center justify-center">
-                        <span id="typing-text" class="font-mono text-xl sm:text-2xl text-neonCyan border-r-2 border-neonCyan pr-2 animate-pulse"></span>
-                    </div>
+                <h1 class="text-4xl sm:text-6xl font-extrabold tracking-tight">
+                    你好，我是 <span class="gradient-text">林奕澤</span>
+                </h1>
+
+                <div class="h-8 flex items-center justify-center">
+                    <span id="typing-text" class="font-mono text-lg sm:text-xl text-neonCyan border-r-2 border-neonCyan pr-2"></span>
                 </div>
 
-                <!-- Bio Tagline Quote -->
-                <p class="max-w-2xl mx-auto text-slate-400 text-base sm:text-lg font-light leading-relaxed">
+                <p class="max-w-xl mx-auto text-slate-400 leading-relaxed">
                     「 喜歡彈吉他 🎸，喜歡打籃球 🏀，不喜歡跑步 ❌🏃‍♂️ 」<br>
                     喜歡簡單生活，也喜歡認真對待每一件事。
                 </p>
 
-                <!-- Action CTA Buttons -->
-                <div class="flex flex-col sm:flex-row items-center justify-center gap-4 pt-4">
-                    <a href="#about" class="w-full sm:w-auto px-8 py-3.5 rounded-xl font-semibold text-white bg-gradient-to-r from-neonPurple to-neonCyan shadow-lg shadow-neonPurple/30 hover:shadow-neonPurple/50 hover:scale-105 transition-all flex items-center justify-center">
-                        了解更多關於我 <i class="fa-solid fa-arrow-down ml-2"></i>
+                <div class="flex flex-wrap justify-center gap-4 pt-2">
+                    <a href="#about" class="px-7 py-3 rounded-xl font-semibold bg-gradient-to-r from-neonPurple to-neonCyan text-white hover:opacity-90 transition">
+                        了解更多關於我
                     </a>
-                    <a href="#skills" class="w-full sm:w-auto px-8 py-3.5 rounded-xl font-semibold text-slate-300 hover:text-white glass-card hover:bg-slate-800/80 transition-all flex items-center justify-center">
-                        探索吉他與技能 <i class="fa-solid fa-guitar ml-2 text-neonPurple"></i>
+                    <a href="#skills" class="px-7 py-3 rounded-xl font-semibold glass-card text-slate-200 hover:bg-slate-800 transition">
+                        探索吉他與技能
                     </a>
                 </div>
 
-                <!-- Quick Highlights Grid -->
-                <div class="grid grid-cols-2 md:grid-cols-4 gap-4 pt-12 max-w-4xl mx-auto">
-                    <div class="glass-card p-4 rounded-2xl border border-slate-800 text-center hover:border-neonPurple/50 transition-colors">
-                        <div class="text-neonPurple text-2xl mb-1"><i class="fa-solid fa-graduation-cap"></i></div>
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-4 pt-10">
+                    <div class="glass-card p-4 rounded-2xl">
+                        <i class="fa-solid fa-graduation-cap text-neonPurple text-xl mb-1"></i>
                         <div class="text-xs text-slate-400">主修專業</div>
-                        <div class="text-sm font-bold text-white mt-0.5">數位多媒體</div>
+                        <div class="text-sm font-bold mt-0.5">數位多媒體</div>
                     </div>
-                    <div class="glass-card p-4 rounded-2xl border border-slate-800 text-center hover:border-neonCyan/50 transition-colors">
-                        <div class="text-neonCyan text-2xl mb-1"><i class="fa-solid fa-guitar"></i></div>
+                    <div class="glass-card p-4 rounded-2xl">
+                        <i class="fa-solid fa-guitar text-neonCyan text-xl mb-1"></i>
                         <div class="text-xs text-slate-400">音樂愛好</div>
-                        <div class="text-sm font-bold text-white mt-0.5">吉他彈奏 / 創作</div>
+                        <div class="text-sm font-bold mt-0.5">吉他彈奏 / 創作</div>
                     </div>
-                    <div class="glass-card p-4 rounded-2xl border border-slate-800 text-center hover:border-accentOrange/50 transition-colors">
-                        <div class="text-accentOrange text-2xl mb-1"><i class="fa-solid fa-basketball-ball"></i></div>
+                    <div class="glass-card p-4 rounded-2xl">
+                        <i class="fa-solid fa-basketball-ball text-accentOrange text-xl mb-1"></i>
                         <div class="text-xs text-slate-400">運動強項</div>
-                        <div class="text-sm font-bold text-white mt-0.5">籃球場上的衛</div>
+                        <div class="text-sm font-bold mt-0.5">籃球場上的衛</div>
                     </div>
-                    <div class="glass-card p-4 rounded-2xl border border-slate-800 text-center hover:border-neonPink/50 transition-colors">
-                        <div class="text-neonPink text-2xl mb-1"><i class="fa-solid fa-ban font-bold"></i></div>
+                    <div class="glass-card p-4 rounded-2xl">
+                        <i class="fa-solid fa-ban text-neonPink text-xl mb-1"></i>
                         <div class="text-xs text-slate-400">生活堅持</div>
-                        <div class="text-sm font-bold text-white mt-0.5">堅決不跑步</div>
+                        <div class="text-sm font-bold mt-0.5">堅決不跑步</div>
                     </div>
                 </div>
-
             </div>
         </section>
 
-        <!-- SECTION 2: ABOUT ME / 關於我 -->
-        <section id="about" class="py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-transparent via-cardBg/40 to-transparent">
-            <div class="max-w-6xl mx-auto">
-                
-                <!-- Section Header -->
-                <div class="text-center space-y-2 mb-16">
-                    <span class="text-xs font-mono tracking-widest text-neonCyan uppercase font-semibold">About Me</span>
-                    <h2 class="text-3xl sm:text-4xl font-extrabold text-white">關於我 ‧ 個人介紹</h2>
-                    <div class="w-16 h-1 bg-gradient-to-r from-neonPurple to-neonCyan mx-auto rounded-full"></div>
+        <!-- 2. 關於我 -->
+        <section id="about" class="py-20 px-4 bg-cardBg/30">
+            <div class="max-w-5xl mx-auto">
+                <div class="text-center mb-12">
+                    <span class="text-xs font-mono text-neonCyan uppercase">About Me</span>
+                    <h2 class="text-3xl font-extrabold mt-1">關於我 ‧ 個人介紹</h2>
                 </div>
 
-                <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-                    
-                    <!-- Left Column: Photo Showcase & Interactive Avatar Changer -->
-                    <div class="lg:col-span-5 flex flex-col items-center">
-                        <div class="relative group w-64 h-64 sm:w-80 sm:h-80 rounded-3xl p-1 bg-gradient-to-tr from-neonPurple via-neonCyan to-neonPink shadow-2xl shadow-neonPurple/20 transition-all duration-300">
-                            <!-- Image Container -->
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+                    <!-- 左側大頭貼：直接修改下方 <img> 的 src 即可放入你的照片 -->
+                    <div class="lg:col-span-5 flex justify-center">
+                        <div class="w-64 h-64 sm:w-80 sm:h-80 rounded-3xl p-1 bg-gradient-to-tr from-neonPurple via-neonCyan to-neonPink shadow-xl">
                             <div class="w-full h-full rounded-[22px] overflow-hidden bg-slate-900 relative">
-                                <img id="profile-img"
-                                     src="data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 400'%3E%3Cdefs%3E%3ClinearGradient id='bg' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0%25' stop-color='%230f172a'/%3E%3Cstop offset='50%25' stop-color='%231e1b4b'/%3E%3Cstop offset='100%25' stop-color='%23090a0f'/%3E%3C/linearGradient%3E%3ClinearGradient id='neon' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0%25' stop-color='%238b5cf6'/%3E%3Cstop offset='50%25' stop-color='%2306b6d4'/%3E%3Cstop offset='100%25' stop-color='%23ec4899'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='400' height='400' fill='url(%23bg)'/%3E%3Ccircle cx='310' cy='90' r='90' fill='%238b5cf6' fill-opacity='0.18'/%3E%3Ccircle cx='90' cy='310' r='110' fill='%2306b6d4' fill-opacity='0.16'/%3E%3Cg stroke='%23ffffff' stroke-opacity='0.06' stroke-width='1'%3E%3Cline x1='0' y1='80' x2='400' y2='80'/%3E%3Cline x1='0' y1='160' x2='400' y2='160'/%3E%3Cline x1='0' y1='240' x2='400' y2='240'/%3E%3Cline x1='0' y1='320' x2='400' y2='320'/%3E%3Cline x1='80' y1='0' x2='80' y2='400'/%3E%3Cline x1='160' y1='0' x2='160' y2='400'/%3E%3Cline x1='240' y1='0' x2='240' y2='400'/%3E%3Cline x1='320' y1='0' x2='320' y2='400'/%3E%3C/g%3E%3Ccircle cx='200' cy='185' r='92' fill='none' stroke='url(%23neon)' stroke-width='3' stroke-dasharray='12 6'/%3E%3Ccircle cx='200' cy='155' r='36' fill='%23cbd5e1'/%3E%3Cpath d='M162 150 C162 118 238 118 238 150' fill='none' stroke='url(%23neon)' stroke-width='8' stroke-linecap='round'/%3E%3Crect x='152' y='140' width='12' height='26' rx='6' fill='%2306b6d4'/%3E%3Crect x='236' y='140' width='12' height='26' rx='6' fill='%23ec4899'/%3E%3Cpath d='M132 268 C132 222 268 222 268 268 Z' fill='%23334155'/%3E%3Crect x='145' y='215' width='120' height='10' rx='5' transform='rotate(-22 200 220)' fill='%23f97316'/%3E%3Cellipse cx='155' cy='242' rx='26' ry='20' transform='rotate(-22 155 242)' fill='%238b5cf6'/%3E%3Ccircle cx='160' cy='240' r='7' fill='%23090a0f'/%3E%3Ctext x='200' y='318' text-anchor='middle' fill='%2338bdf8' font-family='monospace' font-size='14' font-weight='bold' letter-spacing='3'%3EBLVCKX3N // YZ%3C/text%3E%3C/svg%3E"
-                                     alt="林奕澤 Profile"
-                                     referrerpolicy="no-referrer"
-                                     class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
                                 
-                                <div class="absolute inset-0 bg-gradient-to-t from-darkBg via-transparent to-transparent opacity-60 pointer-events-none"></div>
-                                <div class="absolute bottom-4 left-4 right-4 text-center pointer-events-none">
-                                    <span class="inline-block px-3 py-1 bg-black/60 backdrop-blur-md rounded-full text-xs font-mono text-neonCyan border border-neonCyan/30">
+                                <!-- 👇 把這裡的 src="photo.jpg" 改成你的照片路徑或網址 -->
+                                <img src="images/79405.jpg" alt="林奕澤" class="w-full h-full object-cover">
+
+                                <div class="absolute bottom-4 inset-x-0 text-center">
+                                    <span class="px-3 py-1 bg-black/60 backdrop-blur-md rounded-full text-xs font-mono text-neonCyan border border-neonCyan/30">
                                         林奕澤 (Lin Yi-Ze)
                                     </span>
                                 </div>
                             </div>
                         </div>
-
-                        <!-- Dynamic Photo Change Tools -->
-                        <div class="mt-6 glass-card p-4 rounded-2xl w-full max-w-sm border border-slate-800 space-y-3 text-center">
-                            <p class="text-xs text-slate-400 font-medium"><i class="fa-solid fa-camera mr-1 text-neonPurple"></i> 個人照片更換與主題預覽</p>
-                            
-                            <!-- Built-in Preset Avatars -->
-                            <div class="flex items-center justify-center gap-1.5">
-                                <button type="button" onclick="applyPresetAvatar('multimedia')" class="px-2.5 py-1 text-[11px] rounded-md bg-neonPurple/20 hover:bg-neonPurple/40 text-neonPurple border border-neonPurple/40 transition-colors">
-                                    🎧 多媒體頭像
-                                </button>
-                                <button type="button" onclick="applyPresetAvatar('guitar')" class="px-2.5 py-1 text-[11px] rounded-md bg-neonCyan/20 hover:bg-neonCyan/40 text-neonCyan border border-neonCyan/40 transition-colors">
-                                    🎸 吉他主題
-                                </button>
-                                <button type="button" onclick="applyPresetAvatar('basketball')" class="px-2.5 py-1 text-[11px] rounded-md bg-accentOrange/20 hover:bg-accentOrange/40 text-accentOrange border border-accentOrange/40 transition-colors">
-                                    🏀 籃球主題
-                                </button>
-                            </div>
-
-                            <div class="flex items-center justify-center gap-2">
-                                <label for="upload-photo" class="cursor-pointer px-3 py-2 text-xs rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-200 transition-colors border border-slate-700">
-                                    <i class="fa-solid fa-upload mr-1"></i> 上傳本地照片
-                                </label>
-                                <input type="file" id="upload-photo" accept="image/*" class="hidden">
-
-                                <button type="button" id="toggle-url-box-btn" class="px-3 py-2 text-xs rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-200 transition-colors border border-slate-700">
-                                    <i class="fa-solid fa-link mr-1"></i> 貼上照片網址
-                                </button>
-                            </div>
-
-                            <!-- Inline URL Input Box (Works in all sandboxed browsers) -->
-                            <div id="url-input-box" class="hidden pt-1 space-y-2">
-                                <div class="flex gap-1.5">
-                                    <input type="url" id="custom-photo-url" placeholder="https://example.com/photo.jpg" class="flex-1 px-2.5 py-1.5 rounded-lg bg-slate-900 border border-slate-700 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-neonCyan">
-                                    <button type="button" id="apply-url-btn" class="px-3 py-1.5 rounded-lg bg-neonCyan text-darkBg font-bold text-xs hover:opacity-90 transition-opacity">
-                                        套用
-                                    </button>
-                                </div>
-                            </div>
-
-                            <div id="photo-status" class="text-[11px] font-mono text-slate-400 min-h-[16px]"></div>
-                        </div>
                     </div>
 
-                    <!-- Right Column: Bio Details -->
-                    <div class="lg:col-span-7 space-y-6">
-                        <div class="glass-card p-8 rounded-3xl border border-slate-800 space-y-6 relative overflow-hidden">
-                            <div class="absolute top-0 right-0 w-32 h-32 bg-neonPurple/10 rounded-full blur-2xl pointer-events-none"></div>
+                    <!-- 右側個人簡介 -->
+                    <div class="lg:col-span-7 glass-card p-7 sm:p-8 rounded-3xl space-y-5">
+                        <div class="flex items-center justify-between flex-wrap gap-2">
+                            <h3 class="text-2xl font-bold">簡單生活，熱情創作</h3>
+                            <span class="text-xs px-3 py-1 rounded-full bg-neonPurple/20 text-neonPurple font-mono">數位多媒體</span>
+                        </div>
 
-                            <h3 class="text-2xl font-bold text-white flex items-center gap-3">
-                                <span>簡單生活，熱情創作</span>
-                                <span class="text-xs px-3 py-1 rounded-full bg-neonPurple/20 text-neonPurple font-mono font-normal">數位多媒體</span>
-                            </h3>
+                        <p class="text-slate-300 leading-relaxed text-sm sm:text-base">
+                            你好！我是<strong class="text-white">林奕澤</strong>，主修<strong class="text-neonCyan">數位多媒體 (Digital Multimedia)</strong>。
+                            我熱衷於探索音訊與視覺藝術的融合，喜歡在彈吉他中尋找旋律靈感，在籃球場上感受揮汗與團結的節奏。
+                        </p>
 
-                            <p class="text-slate-300 leading-relaxed font-light text-base">
-                                你好！我是<strong class="text-white font-semibold">林奕澤</strong>，主修<strong class="text-neonCyan font-semibold">數位多媒體 (Digital Multimedia)</strong>。
-                                我熱衷於探索音訊與視覺藝術的融合，喜歡在彈吉他中尋找旋律靈感，在籃球場上感受揮汗與團結的節奏。
-                            </p>
+                        <p class="text-slate-300 leading-relaxed text-sm sm:text-base">
+                            我的座右銘是：「<span class="text-neonPurple italic">喜歡簡單生活，也喜歡認真對待每一件事。</span>」雖然日常愛好是閱讀與聽音樂，但只要面對音樂創作或多媒體設計任務，我便會投以百分之百的專注。
+                        </p>
 
-                            <p class="text-slate-300 leading-relaxed font-light text-base">
-                                我的座右銘是：「<span class="text-neonPurple italic">喜歡簡單生活，也喜歡認真對待每一件事。</span>」雖然日常愛好是閱讀與聽音樂，但只要面對音樂創作或多媒體設計任務，我便會投以百分之百的專注。
-                            </p>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-4 border-t border-slate-800 text-sm">
+                            <div><span class="text-slate-400">姓名：</span><strong>林奕澤</strong></div>
+                            <div><span class="text-slate-400">主修：</span><strong>數位多媒體</strong></div>
+                            <div><span class="text-slate-400">興趣：</span><strong>彈吉他 / 打籃球 / 聽音樂</strong></div>
+                            <div><span class="text-slate-400">態度：</span><strong>簡單、認真、真摯</strong></div>
+                        </div>
 
-                            <!-- Personal Info Grid -->
-                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-4 border-t border-slate-800/80">
-                                <div class="flex items-center space-x-3">
-                                    <div class="w-9 h-9 rounded-xl bg-neonPurple/10 text-neonPurple flex items-center justify-center">
-                                        <i class="fa-solid fa-user"></i>
-                                    </div>
-                                    <div>
-                                        <div class="text-xs text-slate-400">姓名</div>
-                                        <div class="text-sm font-semibold text-white">林奕澤</div>
-                                    </div>
-                                </div>
-
-                                <div class="flex items-center space-x-3">
-                                    <div class="w-9 h-9 rounded-xl bg-neonCyan/10 text-neonCyan flex items-center justify-center">
-                                        <i class="fa-solid fa-laptop-code"></i>
-                                    </div>
-                                    <div>
-                                        <div class="text-xs text-slate-400">主修領域</div>
-                                        <div class="text-sm font-semibold text-white">數位多媒體</div>
-                                    </div>
-                                </div>
-
-                                <div class="flex items-center space-x-3">
-                                    <div class="w-9 h-9 rounded-xl bg-neonPink/10 text-neonPink flex items-center justify-center">
-                                        <i class="fa-solid fa-heart"></i>
-                                    </div>
-                                    <div>
-                                        <div class="text-xs text-slate-400">核心興趣</div>
-                                        <div class="text-sm font-semibold text-white">彈吉他 / 打籃球 / 聽音樂</div>
-                                    </div>
-                                </div>
-
-                                <div class="flex items-center space-x-3">
-                                    <div class="w-9 h-9 rounded-xl bg-emerald-500/10 text-emerald-400 flex items-center justify-center">
-                                        <i class="fa-solid fa-star"></i>
-                                    </div>
-                                    <div>
-                                        <div class="text-xs text-slate-400">生活態度</div>
-                                        <div class="text-sm font-semibold text-white">簡單、認真、真摯</div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- Interactive Tags -->
-                            <div class="pt-2">
-                                <div class="text-xs font-mono text-slate-400 mb-3"># 標籤與偏好</div>
-                                <div class="flex flex-wrap gap-2">
-                                    <span class="px-3 py-1.5 rounded-xl bg-slate-800/80 border border-slate-700/60 text-xs text-slate-200 hover:border-neonPurple transition-colors">
-                                        🎸 彈吉他 Guitar
-                                    </span>
-                                    <span class="px-3 py-1.5 rounded-xl bg-slate-800/80 border border-slate-700/60 text-xs text-slate-200 hover:border-neonCyan transition-colors">
-                                        🏀 打籃球 Basketball
-                                    </span>
-                                    <span class="px-3 py-1.5 rounded-xl bg-slate-800/80 border border-slate-700/60 text-xs text-slate-200 hover:border-neonPink transition-colors">
-                                        🎧 聽音樂 Listening
-                                    </span>
-                                    <span class="px-3 py-1.5 rounded-xl bg-slate-800/80 border border-slate-700/60 text-xs text-slate-200 hover:border-emerald-400 transition-colors">
-                                        📚 看書 Reading
-                                    </span>
-                                    <span class="px-3 py-1.5 rounded-xl bg-rose-950/40 border border-rose-800/60 text-xs text-rose-300 font-medium">
-                                        ❌ 不喜歡跑步 No Running!
-                                    </span>
-                                </div>
-                            </div>
-
+                        <div class="flex flex-wrap gap-2 pt-2 text-xs">
+                            <span class="px-3 py-1.5 rounded-xl bg-slate-800">🎸 彈吉他</span>
+                            <span class="px-3 py-1.5 rounded-xl bg-slate-800">🏀 打籃球</span>
+                            <span class="px-3 py-1.5 rounded-xl bg-slate-800">🎧 聽音樂</span>
+                            <span class="px-3 py-1.5 rounded-xl bg-slate-800">📚 看書</span>
+                            <span class="px-3 py-1.5 rounded-xl bg-rose-950/60 text-rose-300 border border-rose-800/60">❌ 不喜歡跑步</span>
                         </div>
                     </div>
-
                 </div>
-
             </div>
         </section>
 
-        <!-- SECTION 3: SKILLS & HOBBIES / 技能與興趣 -->
-        <section id="skills" class="py-20 px-4 sm:px-6 lg:px-8">
-            <div class="max-w-6xl mx-auto space-y-16">
-                
-                <!-- Section Header -->
-                <div class="text-center space-y-2">
-                    <span class="text-xs font-mono tracking-widest text-neonPurple uppercase font-semibold">Skills & Hobbies</span>
-                    <h2 class="text-3xl sm:text-4xl font-extrabold text-white">技能與互動體驗</h2>
-                    <p class="text-slate-400 text-sm max-w-xl mx-auto">融合數位多媒體設計與音樂演奏，在這裡可以直接體驗互動吉他彈奏與籃球挑戰！</p>
-                    <div class="w-16 h-1 bg-gradient-to-r from-neonPurple to-neonCyan mx-auto rounded-full"></div>
+        <!-- 3. 技能與互動體驗 -->
+        <section id="skills" class="py-20 px-4">
+            <div class="max-w-5xl mx-auto space-y-12">
+                <div class="text-center">
+                    <span class="text-xs font-mono text-neonPurple uppercase">Skills & Hobbies</span>
+                    <h2 class="text-3xl font-extrabold mt-1">技能與互動體驗</h2>
                 </div>
 
-                <!-- Skills Grid & Visual Bars -->
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                    
-                    <!-- Skill Card 1: 彈音樂 / 音樂創作 -->
-                    <div class="glass-card p-6 rounded-3xl border border-slate-800 space-y-4 hover:border-neonPurple/50 transition-all">
-                        <div class="flex items-center justify-between">
-                            <div class="flex items-center space-x-3">
-                                <div class="w-12 h-12 rounded-2xl bg-neonPurple/20 text-neonPurple flex items-center justify-center text-xl">
-                                    <i class="fa-solid fa-guitar"></i>
-                                </div>
-                                <div>
-                                    <h3 class="text-lg font-bold text-white">彈音樂 & 音樂表現</h3>
-                                    <p class="text-xs text-slate-400">Guitar Performance & Acoustic Art</p>
-                                </div>
-                            </div>
-                            <span class="font-mono text-neonPurple font-bold">90%</span>
+                <!-- 技能條 -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="glass-card p-6 rounded-2xl space-y-3">
+                        <div class="flex justify-between font-bold">
+                            <span><i class="fa-solid fa-guitar text-neonPurple mr-2"></i>彈音樂 & 音樂表現</span>
+                            <span class="font-mono text-neonPurple">90%</span>
                         </div>
-                        <p class="text-xs text-slate-300 leading-relaxed">
-                            專長於和弦彈唱、旋律編排與彈指節奏感，善於透過吉他傳遞純粹的情感與音樂氛圍。
-                        </p>
-                        <!-- Progress Bar -->
-                        <div class="w-full h-2.5 bg-slate-800 rounded-full overflow-hidden">
-                            <div class="h-full bg-gradient-to-r from-neonPurple to-neonPink rounded-full w-[90%]"></div>
-                        </div>
+                        <p class="text-xs text-slate-400">專長於和弦彈唱、旋律編排與彈指節奏感。</p>
+                        <div class="h-2 bg-slate-800 rounded-full"><div class="h-full bg-neonPurple rounded-full w-[90%]"></div></div>
                     </div>
 
-                    <!-- Skill Card 2: 數位多媒體設計 -->
-                    <div class="glass-card p-6 rounded-3xl border border-slate-800 space-y-4 hover:border-neonCyan/50 transition-all">
-                        <div class="flex items-center justify-between">
-                            <div class="flex items-center space-x-3">
-                                <div class="w-12 h-12 rounded-2xl bg-neonCyan/20 text-neonCyan flex items-center justify-center text-xl">
-                                    <i class="fa-solid fa-photo-film"></i>
-                                </div>
-                                <div>
-                                    <h3 class="text-lg font-bold text-white">數位多媒體設計</h3>
-                                    <p class="text-xs text-slate-400">Digital Multimedia & Visuals</p>
-                                </div>
-                            </div>
-                            <span class="font-mono text-neonCyan font-bold">85%</span>
+                    <div class="glass-card p-6 rounded-2xl space-y-3">
+                        <div class="flex justify-between font-bold">
+                            <span><i class="fa-solid fa-photo-film text-neonCyan mr-2"></i>數位多媒體設計</span>
+                            <span class="font-mono text-neonCyan">85%</span>
                         </div>
-                        <p class="text-xs text-slate-300 leading-relaxed">
-                            整合影音剪輯、數位圖像處理與視覺特效，具備跨媒體呈現與創作能力。
-                        </p>
-                        <!-- Progress Bar -->
-                        <div class="w-full h-2.5 bg-slate-800 rounded-full overflow-hidden">
-                            <div class="h-full bg-gradient-to-r from-neonCyan to-emerald-400 rounded-full w-[85%]"></div>
-                        </div>
+                        <p class="text-xs text-slate-400">整合影音剪輯、數位圖像處理與視覺特效。</p>
+                        <div class="h-2 bg-slate-800 rounded-full"><div class="h-full bg-neonCyan rounded-full w-[85%]"></div></div>
                     </div>
 
-                    <!-- Skill Card 3: 影音與音效處理 -->
-                    <div class="glass-card p-6 rounded-3xl border border-slate-800 space-y-4 hover:border-accentOrange/50 transition-all">
-                        <div class="flex items-center justify-between">
-                            <div class="flex items-center space-x-3">
-                                <div class="w-12 h-12 rounded-2xl bg-accentOrange/20 text-accentOrange flex items-center justify-center text-xl">
-                                    <i class="fa-solid fa-sliders"></i>
-                                </div>
-                                <div>
-                                    <h3 class="text-lg font-bold text-white">音訊處理與剪輯</h3>
-                                    <p class="text-xs text-slate-400">Audio Editing & Sound Design</p>
-                                </div>
-                            </div>
-                            <span class="font-mono text-accentOrange font-bold">80%</span>
+                    <div class="glass-card p-6 rounded-2xl space-y-3">
+                        <div class="flex justify-between font-bold">
+                            <span><i class="fa-solid fa-sliders text-accentOrange mr-2"></i>音訊處理與剪輯</span>
+                            <span class="font-mono text-accentOrange">80%</span>
                         </div>
-                        <p class="text-xs text-slate-300 leading-relaxed">
-                            熟悉的錄音混音概念、音效庫運用與多軌合成，打造層次豐富的聽覺體驗。
-                        </p>
-                        <!-- Progress Bar -->
-                        <div class="w-full h-2.5 bg-slate-800 rounded-full overflow-hidden">
-                            <div class="h-full bg-gradient-to-r from-accentOrange to-amber-300 rounded-full w-[80%]"></div>
-                        </div>
+                        <p class="text-xs text-slate-400">熟悉錄音混音概念、音效運用與多軌合成。</p>
+                        <div class="h-2 bg-slate-800 rounded-full"><div class="h-full bg-accentOrange rounded-full w-[80%]"></div></div>
                     </div>
 
-                    <!-- Skill Card 4: 籃球戰術與團隊運動 -->
-                    <div class="glass-card p-6 rounded-3xl border border-slate-800 space-y-4 hover:border-emerald-400/50 transition-all">
-                        <div class="flex items-center justify-between">
-                            <div class="flex items-center space-x-3">
-                                <div class="w-12 h-12 rounded-2xl bg-emerald-500/20 text-emerald-400 flex items-center justify-center text-xl">
-                                    <i class="fa-solid fa-basketball-ball"></i>
-                                </div>
-                                <div>
-                                    <h3 class="text-lg font-bold text-white">籃球團隊與戰術競技</h3>
-                                    <p class="text-xs text-slate-400">Basketball Teamwork & Strategy</p>
-                                </div>
-                            </div>
-                            <span class="font-mono text-emerald-400 font-bold">95%</span>
+                    <div class="glass-card p-6 rounded-2xl space-y-3">
+                        <div class="flex justify-between font-bold">
+                            <span><i class="fa-solid fa-basketball-ball text-emerald-400 mr-2"></i>籃球團隊與競技</span>
+                            <span class="font-mono text-emerald-400">95%</span>
                         </div>
-                        <p class="text-xs text-slate-300 leading-relaxed">
-                            具備優異的球場視野、傳球溝通與團隊協作精神，以球會友，活力充沛。
-                        </p>
-                        <!-- Progress Bar -->
-                        <div class="w-full h-2.5 bg-slate-800 rounded-full overflow-hidden">
-                            <div class="h-full bg-gradient-to-r from-emerald-400 to-teal-300 rounded-full w-[95%]"></div>
-                        </div>
-                    </div>
-
-                </div>
-
-                <!-- INTERACTIVE HOBBY LAB (Interactive Modules) -->
-                <div class="space-y-6 pt-6">
-                    <h3 class="text-xl font-bold text-white flex items-center gap-2">
-                        <i class="fa-solid fa-gamepad text-neonCyan"></i>
-                        <span>興趣互動實驗室 (Interactive Hobby Playground)</span>
-                    </h3>
-
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                        
-                        <!-- TOY 1: Web Audio Guitar Strummer -->
-                        <div class="glass-card p-6 rounded-3xl border border-slate-800 space-y-4 relative flex flex-col justify-between">
-                            <div class="space-y-4">
-                                <div class="flex items-center justify-between">
-                                    <div class="flex items-center space-x-2">
-                                        <i class="fa-solid fa-guitar text-neonPurple text-xl"></i>
-                                        <h4 class="font-bold text-white">線上吉他試彈 (Interactive Guitar)</h4>
-                                    </div>
-                                    <span class="text-xs font-mono text-slate-400">Web Audio Synth</span>
-                                </div>
-                                <p class="text-xs text-slate-400">點擊下方和弦按鈕，體驗真實的木吉他撥弦模擬聲線（經典卡農與流行進行 C - G - Am - F）：</p>
-                                
-                                <!-- Guitar Chord Pads -->
-                                <div class="grid grid-cols-4 gap-2 pt-2">
-                                    <button onclick="playChord('C')" class="p-4 rounded-xl bg-slate-800/90 hover:bg-neonPurple hover:text-white border border-slate-700 text-slate-200 font-bold transition-all shadow-md active:scale-95">
-                                        C
-                                        <span class="block text-[10px] font-normal opacity-70">Major</span>
-                                    </button>
-                                    <button onclick="playChord('G')" class="p-4 rounded-xl bg-slate-800/90 hover:bg-neonPurple hover:text-white border border-slate-700 text-slate-200 font-bold transition-all shadow-md active:scale-95">
-                                        G
-                                        <span class="block text-[10px] font-normal opacity-70">Major</span>
-                                    </button>
-                                    <button onclick="playChord('Am')" class="p-4 rounded-xl bg-slate-800/90 hover:bg-neonPurple hover:text-white border border-slate-700 text-slate-200 font-bold transition-all shadow-md active:scale-95">
-                                        Am
-                                        <span class="block text-[10px] font-normal opacity-70">Minor</span>
-                                    </button>
-                                    <button onclick="playChord('F')" class="p-4 rounded-xl bg-slate-800/90 hover:bg-neonPurple hover:text-white border border-slate-700 text-slate-200 font-bold transition-all shadow-md active:scale-95">
-                                        F
-                                        <span class="block text-[10px] font-normal opacity-70">Major</span>
-                                    </button>
-                                </div>
-                            </div>
-
-                            <div class="pt-4 space-y-3">
-                                <button onclick="playProgression()" class="w-full py-2.5 rounded-xl bg-slate-800/70 hover:bg-slate-700/80 border border-slate-700 text-xs font-mono text-slate-200 transition-all flex items-center justify-center gap-2">
-                                    <i class="fa-solid fa-play text-neonPurple"></i> 自動刷扣示範 (C → G → Am → F)
-                                </button>
-                                <div id="chord-status" class="text-center text-xs font-mono text-neonCyan h-4">點擊和弦開始彈奏</div>
-                            </div>
-                        </div>
-
-                        <!-- TOY 2: Basketball Mini-Game -->
-                        <div class="glass-card p-6 rounded-3xl border border-slate-800 space-y-4 relative flex flex-col justify-between">
-                            <div class="space-y-3">
-                                <div class="flex items-center justify-between">
-                                    <div class="flex items-center space-x-2">
-                                        <i class="fa-solid fa-basketball-ball text-accentOrange text-xl"></i>
-                                        <h4 class="font-bold text-white">定點三分球挑戰 (No Running!)</h4>
-                                    </div>
-                                    <div class="flex items-center gap-3 font-mono text-xs">
-                                        <span class="text-slate-400">得分: <strong id="bball-score" class="text-accentOrange text-sm">0</strong></span>
-                                        <span class="text-slate-400">連進: <strong id="bball-streak" class="text-emerald-400 text-sm">0</strong></span>
-                                    </div>
-                                </div>
-                                <p class="text-xs text-slate-400">在準星滑入<span class="text-emerald-400 font-semibold">綠色最佳甜蜜點</span>時按下投籃，不用折返跑也能享受空心入網！</p>
-
-                                <!-- Mini Court Canvas -->
-                                <div class="relative w-full h-36 rounded-2xl bg-slate-900/90 border border-slate-800 overflow-hidden">
-                                    <canvas id="basketball-canvas" class="w-full h-full block"></canvas>
-                                    <div id="bball-feedback" class="absolute top-2 left-3 text-xs font-mono font-bold text-slate-300 pointer-events-none">準備出手...</div>
-                                </div>
-                            </div>
-
-                            <div class="pt-2 space-y-2">
-                                <!-- Timing Bar -->
-                                <div class="relative w-full h-4 bg-slate-800 rounded-full overflow-hidden border border-slate-700">
-                                    <!-- Sweet Spot Zone -->
-                                    <div class="absolute top-0 bottom-0 left-[42%] w-[16%] bg-emerald-500/40 border-x border-emerald-400"></div>
-                                    <!-- Moving Cursor -->
-                                    <div id="shot-cursor" class="absolute top-0 bottom-0 w-2 bg-white shadow-[0_0_8px_#fff] rounded-full" style="left: 0%;"></div>
-                                </div>
-
-                                <button id="shoot-btn" onclick="shootBasketball()" class="w-full py-2.5 rounded-xl bg-gradient-to-r from-accentOrange to-neonPink hover:opacity-95 text-white text-xs font-bold tracking-wider uppercase shadow-md shadow-accentOrange/20 transition-all active:scale-95 flex items-center justify-center gap-2">
-                                    <i class="fa-solid fa-basketball"></i> 抓準時機出手投籃！
-                                </button>
-                            </div>
-                        </div>
-
+                        <p class="text-xs text-slate-400">具備球場視野、傳球溝通與團隊協作精神。</p>
+                        <div class="h-2 bg-slate-800 rounded-full"><div class="h-full bg-emerald-400 rounded-full w-[95%]"></div></div>
                     </div>
                 </div>
 
-            </div>
-        </section>
-
-        <!-- SECTION 4: CONTACT / 聯繫方式 -->
-        <section id="contact" class="py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-t from-cardBg/60 to-transparent">
-            <div class="max-w-5xl mx-auto">
-                
-                <!-- Section Header -->
-                <div class="text-center space-y-2 mb-16">
-                    <span class="text-xs font-mono tracking-widest text-neonPink uppercase font-semibold">Get In Touch</span>
-                    <h2 class="text-3xl sm:text-4xl font-extrabold text-white">聯繫方式 ‧ 一起交流</h2>
-                    <p class="text-slate-400 text-sm max-w-lg mx-auto">無論是數位多媒體專案合作、吉他音樂交流，或是約一場籃球賽（絕不跑步），都歡迎隨時找我！</p>
-                    <div class="w-16 h-1 bg-gradient-to-r from-neonPurple to-neonCyan mx-auto rounded-full"></div>
-                </div>
-
-                <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
-                    
-                    <!-- Left: Social & Direct Info -->
-                    <div class="lg:col-span-5 space-y-4">
-                        <div class="glass-card p-6 rounded-3xl border border-slate-800 space-y-5">
-                            <h3 class="text-lg font-bold text-white">社群與聯絡資訊</h3>
-                            
-                            <!-- Handle Card -->
-                            <div class="flex items-center justify-between p-3.5 rounded-2xl bg-slate-800/60 border border-slate-700/60">
-                                <div class="flex items-center space-x-3">
-                                    <div class="w-10 h-10 rounded-xl bg-neonPurple/20 text-neonPurple flex items-center justify-center text-lg">
-                                        <i class="fa-brands fa-instagram"></i>
-                                    </div>
-                                    <div>
-                                        <div class="text-xs text-slate-400">Instagram / 社群帳號</div>
-                                        <div class="text-sm font-mono font-semibold text-white">@blvckx3n</div>
-                                    </div>
-                                </div>
-                                <button onclick="copyText('blvckx3n', '已複製帳號 blvckx3n')" class="px-3 py-1.5 rounded-lg bg-slate-700/70 hover:bg-neonPurple text-xs text-slate-200 hover:text-white transition-colors">
-                                    <i class="fa-regular fa-copy"></i>
-                                </button>
+                <!-- 互動小遊戲 -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <!-- 線上吉他 -->
+                    <div class="glass-card p-6 rounded-2xl flex flex-col justify-between space-y-4">
+                        <div class="space-y-3">
+                            <h3 class="font-bold"><i class="fa-solid fa-guitar text-neonPurple mr-2"></i>線上吉他試彈</h3>
+                            <p class="text-xs text-slate-400">點擊和弦按鈕試聽（C - G - Am - F）：</p>
+                            <div class="grid grid-cols-4 gap-2">
+                                <button onclick="playChord('C')" class="py-3 rounded-xl bg-slate-800 hover:bg-neonPurple font-bold transition">C</button>
+                                <button onclick="playChord('G')" class="py-3 rounded-xl bg-slate-800 hover:bg-neonPurple font-bold transition">G</button>
+                                <button onclick="playChord('Am')" class="py-3 rounded-xl bg-slate-800 hover:bg-neonPurple font-bold transition">Am</button>
+                                <button onclick="playChord('F')" class="py-3 rounded-xl bg-slate-800 hover:bg-neonPurple font-bold transition">F</button>
                             </div>
-
-                            <!-- Email Card -->
-                            <div class="flex items-center justify-between p-3.5 rounded-2xl bg-slate-800/60 border border-slate-700/60">
-                                <div class="flex items-center space-x-3">
-                                    <div class="w-10 h-10 rounded-xl bg-neonCyan/20 text-neonCyan flex items-center justify-center text-lg">
-                                        <i class="fa-solid fa-envelope"></i>
-                                    </div>
-                                    <div>
-                                        <div class="text-xs text-slate-400">電子信箱 Email</div>
-                                        <div class="text-sm font-mono font-semibold text-white">blvckx3n.yz@gmail.com</div>
-                                    </div>
-                                </div>
-                                <button onclick="copyText('blvckx3n.yz@gmail.com', '已複製電子信箱')" class="px-3 py-1.5 rounded-lg bg-slate-700/70 hover:bg-neonCyan text-xs text-slate-200 hover:text-white transition-colors">
-                                    <i class="fa-regular fa-copy"></i>
-                                </button>
-                            </div>
-
-                            <!-- GitHub / Portfolio Card -->
-                            <div class="flex items-center justify-between p-3.5 rounded-2xl bg-slate-800/60 border border-slate-700/60">
-                                <div class="flex items-center space-x-3">
-                                    <div class="w-10 h-10 rounded-xl bg-neonPink/20 text-neonPink flex items-center justify-center text-lg">
-                                        <i class="fa-brands fa-github"></i>
-                                    </div>
-                                    <div>
-                                        <div class="text-xs text-slate-400">GitHub 作品空間</div>
-                                        <div class="text-sm font-mono font-semibold text-white">github.com/blvckx3n</div>
-                                    </div>
-                                </div>
-                                <button onclick="copyText('https://github.com/blvckx3n', '已複製 GitHub 連結')" class="px-3 py-1.5 rounded-lg bg-slate-700/70 hover:bg-neonPink text-xs text-slate-200 hover:text-white transition-colors">
-                                    <i class="fa-regular fa-copy"></i>
-                                </button>
-                            </div>
-
-                            <div id="copy-toast" class="hidden text-center text-xs font-mono text-emerald-400 bg-emerald-950/50 border border-emerald-800/60 py-2 rounded-xl"></div>
                         </div>
-                    </div>
-
-                    <!-- Right: Quick Message Form -->
-                    <div class="lg:col-span-7">
-                        <form id="contact-form" class="glass-card p-6 sm:p-8 rounded-3xl border border-slate-800 space-y-5">
-                            <h3 class="text-lg font-bold text-white">傳送即時留言</h3>
-
-                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                                <div class="space-y-1.5">
-                                    <label for="sender-name" class="text-xs text-slate-400 font-medium">你的稱呼</label>
-                                    <input type="text" id="sender-name" required placeholder="例如：王小明" class="w-full px-4 py-3 rounded-xl bg-slate-900/80 border border-slate-700/80 text-sm text-white placeholder-slate-500 focus:outline-none focus:border-neonPurple transition-colors">
-                                </div>
-                                <div class="space-y-1.5">
-                                    <label for="sender-email" class="text-xs text-slate-400 font-medium">聯絡方式 (Email / IG)</label>
-                                    <input type="text" id="sender-email" required placeholder="name@example.com" class="w-full px-4 py-3 rounded-xl bg-slate-900/80 border border-slate-700/80 text-sm text-white placeholder-slate-500 focus:outline-none focus:border-neonCyan transition-colors">
-                                </div>
-                            </div>
-
-                            <div class="space-y-1.5">
-                                <label for="sender-topic" class="text-xs text-slate-400 font-medium">交流主題</label>
-                                <select id="sender-topic" class="w-full px-4 py-3 rounded-xl bg-slate-900/80 border border-slate-700/80 text-sm text-white focus:outline-none focus:border-neonPurple transition-colors">
-                                    <option value="multimedia">🎬 數位多媒體 / 設計合作</option>
-                                    <option value="guitar">🎸 吉他彈唱 / 音樂交流</option>
-                                    <option value="basketball">🏀 籃球約戰（保證不跑步）</option>
-                                    <option value="chat">💬 單純打聲招呼</option>
-                                </select>
-                            </div>
-
-                            <div class="space-y-1.5">
-                                <label for="sender-message" class="text-xs text-slate-400 font-medium">想說的話</label>
-                                <textarea id="sender-message" rows="3" required placeholder="寫下你想對林奕澤說的話..." class="w-full px-4 py-3 rounded-xl bg-slate-900/80 border border-slate-700/80 text-sm text-white placeholder-slate-500 focus:outline-none focus:border-neonPurple transition-colors resize-none"></textarea>
-                            </div>
-
-                            <button type="submit" class="w-full py-3.5 rounded-xl font-semibold text-white bg-gradient-to-r from-neonPurple via-neonCyan to-neonPink shadow-lg shadow-neonPurple/25 hover:shadow-neonPurple/45 hover:scale-[1.01] transition-all flex items-center justify-center gap-2">
-                                <i class="fa-solid fa-paper-plane"></i> 送出訊息給林奕澤
+                        <div class="space-y-2">
+                            <button onclick="playProgression()" class="w-full py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-xs font-mono">
+                                ▶ 自動刷扣示範
                             </button>
-
-                            <div id="form-feedback" class="hidden p-3.5 rounded-xl bg-emerald-500/10 border border-emerald-500/40 text-emerald-300 text-xs text-center font-medium">
-                                <i class="fa-solid fa-circle-check mr-1"></i> 訊息已收到！感謝你的聯繫，我會認真閱讀並盡快回覆你。
-                            </div>
-                        </form>
+                            <div id="chord-status" class="text-center text-xs font-mono text-neonCyan h-4">點擊和弦開始彈奏</div>
+                        </div>
                     </div>
 
+                    <!-- 定點三分球 -->
+                    <div class="glass-card p-6 rounded-2xl flex flex-col justify-between space-y-4">
+                        <div class="space-y-2">
+                            <div class="flex justify-between items-center">
+                                <h3 class="font-bold"><i class="fa-solid fa-basketball-ball text-accentOrange mr-2"></i>定點三分球挑戰</h3>
+                                <span class="text-xs font-mono">得分: <strong id="bball-score" class="text-accentOrange">0</strong></span>
+                            </div>
+                            <div class="relative w-full h-28 rounded-xl bg-slate-900 border border-slate-800 overflow-hidden">
+                                <canvas id="basketball-canvas" class="w-full h-full block"></canvas>
+                                <div id="bball-feedback" class="absolute top-2 left-3 text-xs font-mono text-slate-300">對準綠色區域出手！</div>
+                            </div>
+                        </div>
+                        <div class="space-y-2">
+                            <div class="relative w-full h-3.5 bg-slate-800 rounded-full overflow-hidden">
+                                <div class="absolute inset-y-0 left-[42%] w-[16%] bg-emerald-500/50 border-x border-emerald-400"></div>
+                                <div id="shot-cursor" class="absolute inset-y-0 w-2 bg-white rounded-full" style="left: 0%;"></div>
+                            </div>
+                            <button onclick="shootBasketball()" class="w-full py-2 rounded-xl bg-gradient-to-r from-accentOrange to-neonPink text-xs font-bold">
+                                🏀 出手投籃！
+                            </button>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
 
+        <!-- 4. 聯繫方式 -->
+        <section id="contact" class="py-20 px-4 bg-cardBg/40">
+            <div class="max-w-4xl mx-auto">
+                <div class="text-center mb-12">
+                    <span class="text-xs font-mono text-neonPink uppercase">Contact</span>
+                    <h2 class="text-3xl font-extrabold mt-1">聯繫方式</h2>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-12 gap-8">
+                    <div class="md:col-span-5 glass-card p-6 rounded-2xl space-y-4">
+                        <h3 class="font-bold">社群資訊</h3>
+                        <div class="flex items-center justify-between p-3 rounded-xl bg-slate-800/70 text-sm">
+                            <span><i class="fa-brands fa-instagram text-neonPurple mr-2"></i>@blvckx3n</span>
+                            <button onclick="copyText('blvckx3n')" class="text-xs px-2.5 py-1 rounded bg-slate-700 hover:bg-neonPurple">複製</button>
+                        </div>
+                        <div class="flex items-center justify-between p-3 rounded-xl bg-slate-800/70 text-sm">
+                            <span><i class="fa-solid fa-envelope text-neonCyan mr-2"></i>blvckx3n.yz@gmail.com</span>
+                            <button onclick="copyText('blvckx3n.yz@gmail.com')" class="text-xs px-2.5 py-1 rounded bg-slate-700 hover:bg-neonCyan">複製</button>
+                        </div>
+                        <div id="copy-toast" class="hidden text-xs font-mono text-emerald-400 text-center">✓ 已複製到剪貼簿</div>
+                    </div>
+
+                    <form id="contact-form" class="md:col-span-7 glass-card p-6 rounded-2xl space-y-4">
+                        <h3 class="font-bold">傳送留言</h3>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                            <input type="text" required placeholder="你的稱呼" class="px-3.5 py-2.5 rounded-xl bg-slate-900 border border-slate-700 text-sm focus:outline-none focus:border-neonPurple">
+                            <input type="text" required placeholder="聯絡方式 (Email / IG)" class="px-3.5 py-2.5 rounded-xl bg-slate-900 border border-slate-700 text-sm focus:outline-none focus:border-neonCyan">
+                        </div>
+                        <textarea rows="3" required placeholder="想對林奕澤說的話..." class="w-full px-3.5 py-2.5 rounded-xl bg-slate-900 border border-slate-700 text-sm focus:outline-none focus:border-neonPurple resize-none"></textarea>
+                        <button type="submit" class="w-full py-3 rounded-xl font-semibold bg-gradient-to-r from-neonPurple to-neonCyan text-sm">
+                            送出訊息
+                        </button>
+                        <div id="form-feedback" class="hidden text-xs text-emerald-400 text-center">✓ 訊息已送出，感謝你的聯繫！</div>
+                    </form>
+                </div>
+            </div>
+        </section>
     </main>
 
-    <!-- FOOTER -->
-    <footer class="relative z-10 border-t border-slate-800/80 bg-darkBg/90 backdrop-blur-md py-8 px-4 sm:px-6 lg:px-8">
-        <div class="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-400">
-            <div class="flex items-center space-x-2">
-                <span class="font-bold text-white">林奕澤 Lin Yi-Ze</span>
-                <span class="text-slate-600">|</span>
-                <span class="font-mono text-neonPurple">blvckx3n</span>
-            </div>
-            <p class="text-center text-slate-500">
-                「喜歡簡單生活，也喜歡認真對待每一件事。」 © 2026 All Rights Reserved.
-            </p>
-            <a href="#home" class="inline-flex items-center gap-1.5 text-slate-300 hover:text-neonCyan transition-colors">
-                回到頂部 <i class="fa-solid fa-arrow-up"></i>
-            </a>
-        </div>
+    <!-- 頁尾 -->
+    <footer class="border-t border-slate-800 py-6 px-4 text-center text-xs text-slate-500">
+        林奕澤 Lin Yi-Ze (blvckx3n) © 2026 ‧ 喜歡簡單生活，也喜歡認真對待每一件事。
     </footer>
 
-    <!-- INTERACTIVE SCRIPTS -->
     <script>
-        // 1. Mobile Drawer Menu Toggle
-        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        // 手機版選單
+        const menuBtn = document.getElementById('mobile-menu-btn');
         const mobileMenu = document.getElementById('mobile-menu');
-        const mobileNavLinks = document.querySelectorAll('.mobile-nav-link');
-
-        mobileMenuBtn.addEventListener('click', () => {
-            mobileMenu.classList.toggle('hidden');
+        menuBtn.addEventListener('click', () => mobileMenu.classList.toggle('hidden'));
+        document.querySelectorAll('.mobile-link').forEach(link => {
+            link.addEventListener('click', () => mobileMenu.classList.add('hidden'));
         });
 
-        mobileNavLinks.forEach(link => {
-            link.addEventListener('click', () => {
-                mobileMenu.classList.add('hidden');
-            });
-        });
-
-        // 2. Typing Animation in Hero Section
-        const typingElement = document.getElementById('typing-text');
-        const phrases = [
-            '數位多媒體創作者 // Digital Multimedia',
-            '木吉他彈唱愛好者 // Acoustic Guitarist',
-            '籃球場上的後衛 // Basketball Enthusiast',
-            '堅決不跑步主義者 // Strictly No Running ❌'
-        ];
-        let phraseIndex = 0;
-        let charIndex = 0;
-        let isDeleting = false;
+        // 打字機動畫
+        const typingEl = document.getElementById('typing-text');
+        const phrases = ['數位多媒體創作者', '木吉他彈唱愛好者', '籃球場上的後衛', '堅決不跑步主義者 ❌'];
+        let pIdx = 0, cIdx = 0, deleting = false;
 
         function typeLoop() {
-            const currentPhrase = phrases[phraseIndex];
-            if (isDeleting) {
-                typingElement.textContent = currentPhrase.substring(0, charIndex - 1);
-                charIndex--;
-            } else {
-                typingElement.textContent = currentPhrase.substring(0, charIndex + 1);
-                charIndex++;
-            }
-
-            let delay = isDeleting ? 40 : 85;
-
-            if (!isDeleting && charIndex === currentPhrase.length) {
-                delay = 2000;
-                isDeleting = true;
-            } else if (isDeleting && charIndex === 0) {
-                isDeleting = false;
-                phraseIndex = (phraseIndex + 1) % phrases.length;
-                delay = 400;
-            }
-
+            const word = phrases[pIdx];
+            typingEl.textContent = deleting ? word.slice(0, --cIdx) : word.slice(0, ++cIdx);
+            let delay = deleting ? 45 : 95;
+            if (!deleting && cIdx === word.length) { delay = 1800; deleting = true; }
+            else if (deleting && cIdx === 0) { deleting = false; pIdx = (pIdx + 1) % phrases.length; delay = 300; }
             setTimeout(typeLoop, delay);
         }
         typeLoop();
 
-        // 3. Offline-Safe Built-in Avatars, Local Upload & Inline URL Loader
-        const profileImg = document.getElementById('profile-img');
-        const uploadInput = document.getElementById('upload-photo');
-        const toggleUrlBoxBtn = document.getElementById('toggle-url-box-btn');
-        const urlInputBox = document.getElementById('url-input-box');
-        const customPhotoUrlInput = document.getElementById('custom-photo-url');
-        const applyUrlBtn = document.getElementById('apply-url-btn');
-        const photoStatus = document.getElementById('photo-status');
-
-        const presetAvatars = {
-            multimedia: "data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 400'%3E%3Cdefs%3E%3ClinearGradient id='bg' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0%25' stop-color='%230f172a'/%3E%3Cstop offset='50%25' stop-color='%231e1b4b'/%3E%3Cstop offset='100%25' stop-color='%23090a0f'/%3E%3C/linearGradient%3E%3ClinearGradient id='neon' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0%25' stop-color='%238b5cf6'/%3E%3Cstop offset='50%25' stop-color='%2306b6d4'/%3E%3Cstop offset='100%25' stop-color='%23ec4899'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='400' height='400' fill='url(%23bg)'/%3E%3Ccircle cx='310' cy='90' r='90' fill='%238b5cf6' fill-opacity='0.18'/%3E%3Ccircle cx='90' cy='310' r='110' fill='%2306b6d4' fill-opacity='0.16'/%3E%3Ccircle cx='200' cy='185' r='92' fill='none' stroke='url(%23neon)' stroke-width='3' stroke-dasharray='12 6'/%3E%3Ccircle cx='200' cy='155' r='36' fill='%23cbd5e1'/%3E%3Cpath d='M162 150 C162 118 238 118 238 150' fill='none' stroke='url(%23neon)' stroke-width='8' stroke-linecap='round'/%3E%3Crect x='152' y='140' width='12' height='26' rx='6' fill='%2306b6d4'/%3E%3Crect x='236' y='140' width='12' height='26' rx='6' fill='%23ec4899'/%3E%3Cpath d='M132 268 C132 222 268 222 268 268 Z' fill='%23334155'/%3E%3Crect x='145' y='215' width='120' height='10' rx='5' transform='rotate(-22 200 220)' fill='%23f97316'/%3E%3Cellipse cx='155' cy='242' rx='26' ry='20' transform='rotate(-22 155 242)' fill='%238b5cf6'/%3E%3Ccircle cx='160' cy='240' r='7' fill='%23090a0f'/%3E%3Ctext x='200' y='318' text-anchor='middle' fill='%2338bdf8' font-family='monospace' font-size='14' font-weight='bold' letter-spacing='3'%3EBLVCKX3N // YZ%3C/text%3E%3C/svg%3E",
-            guitar: "data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 400'%3E%3Cdefs%3E%3ClinearGradient id='gbg' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0%25' stop-color='%23160d2e'/%3E%3Cstop offset='100%25' stop-color='%23090a0f'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='400' height='400' fill='url(%23gbg)'/%3E%3Ccircle cx='200' cy='200' r='130' fill='none' stroke='%238b5cf6' stroke-opacity='0.25' stroke-width='2'/%3E%3Ccircle cx='200' cy='200' r='95' fill='none' stroke='%2306b6d4' stroke-opacity='0.35' stroke-width='2' stroke-dasharray='8 6'/%3E%3Cg transform='rotate(-35 200 200)'%3E%3Crect x='191' y='55' width='18' height='145' rx='4' fill='%23e2e8f0'/%3E%3Crect x='186' y='40' width='28' height='26' rx='6' fill='%238b5cf6'/%3E%3Cellipse cx='200' cy='215' rx='44' ry='36' fill='%2306b6d4'/%3E%3Cellipse cx='200' cy='262' rx='58' ry='46' fill='%238b5cf6'/%3E%3Ccircle cx='200' cy='215' r='16' fill='%23090a0f' stroke='%23f472b6' stroke-width='3'/%3E%3Crect x='182' y='262' width='36' height='8' rx='3' fill='%23090a0f'/%3E%3C/g%3E%3Ctext x='200' y='342' text-anchor='middle' fill='%23a78bfa' font-family='monospace' font-size='13' font-weight='bold' letter-spacing='2'%3EACOUSTIC SESSIONS%3C/text%3E%3C/svg%3E",
-            basketball: "data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 400'%3E%3Cdefs%3E%3ClinearGradient id='bbg' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0%25' stop-color='%231f1209'/%3E%3Cstop offset='100%25' stop-color='%23090a0f'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='400' height='400' fill='url(%23bbg)'/%3E%3Ccircle cx='200' cy='190' r='88' fill='%23f97316'/%3E%3Cpath d='M112 190 H288 M200 102 V278' stroke='%23090a0f' stroke-width='5'/%3E%3Cpath d='M138 128 C168 165 168 215 138 252 M262 128 C232 165 232 215 262 252' fill='none' stroke='%23090a0f' stroke-width='5'/%3E%3Ccircle cx='200' cy='190' r='112' fill='none' stroke='%23ec4899' stroke-width='2.5' stroke-dasharray='10 8'/%3E%3Ctext x='200' y='342' text-anchor='middle' fill='%23fb923c' font-family='monospace' font-size='13' font-weight='bold' letter-spacing='2'%3ECOURT GUARD // NO RUNNING%3C/text%3E%3C/svg%3E"
-        };
-
-        function setPhotoStatus(msg, isError = false) {
-            photoStatus.textContent = msg;
-            photoStatus.className = isError
-                ? 'text-[11px] font-mono text-rose-400 min-h-[16px]'
-                : 'text-[11px] font-mono text-emerald-400 min-h-[16px]';
-        }
-
-        function savePhotoSafely(src) {
-            try {
-                localStorage.setItem('yz_profile_photo', src);
-            } catch (err) {
-                // Ignore storage quota limits for very large local images
-            }
-        }
-
-        function applyPresetAvatar(key) {
-            if (!presetAvatars[key]) return;
-            profileImg.onerror = null;
-            profileImg.src = presetAvatars[key];
-            savePhotoSafely(presetAvatars[key]);
-            setPhotoStatus('✓ 已切換內建主題頭像');
-        }
-
-        // Load saved photo if available, with automatic fallback
-        const savedPhoto = localStorage.getItem('yz_profile_photo');
-        if (savedPhoto) {
-            profileImg.onerror = () => {
-                localStorage.removeItem('yz_profile_photo');
-                profileImg.src = presetAvatars.multimedia;
-            };
-            profileImg.src = savedPhoto;
-        }
-
-        // Local file upload
-        uploadInput.addEventListener('change', (e) => {
-            const file = e.target.files[0];
-            if (!file) return;
-            if (!file.type.startsWith('image/')) {
-                setPhotoStatus('✕ 請選擇有效的圖片檔案', true);
-                return;
-            }
-            const reader = new FileReader();
-            reader.onload = (event) => {
-                profileImg.onerror = null;
-                profileImg.src = event.target.result;
-                savePhotoSafely(event.target.result);
-                setPhotoStatus('✓ 已套用本地照片');
-            };
-            reader.readAsDataURL(file);
-        });
-
-        // Toggle inline URL input box
-        toggleUrlBoxBtn.addEventListener('click', () => {
-            urlInputBox.classList.toggle('hidden');
-            if (!urlInputBox.classList.contains('hidden')) {
-                customPhotoUrlInput.focus();
-            }
-        });
-
-        // Apply pasted URL with error fallback
-        applyUrlBtn.addEventListener('click', () => {
-            const url = customPhotoUrlInput.value.trim();
-            if (!url) {
-                setPhotoStatus('✕ 請先輸入圖片網址', true);
-                return;
-            }
-            setPhotoStatus('⏳ 正在載入圖片...');
-            profileImg.referrerPolicy = 'no-referrer';
-            profileImg.onerror = () => {
-                profileImg.onerror = null;
-                profileImg.src = presetAvatars.multimedia;
-                setPhotoStatus('✕ 該網址無法讀取或限制外連，已恢復預設頭像', true);
-            };
-            profileImg.onload = () => {
-                savePhotoSafely(url);
-               
-            };
-            profileImg.src ="79405.jpg" url;"79405.jpg"
-        });
-
-        // 4. Web Audio API Guitar Strummer
+        // 線上吉他模擬
         let audioCtx = null;
-
-        const chordDefinitions = {
-            'C':  { notes: [130.81, 164.81, 196.00, 261.63, 329.63], label: 'C Major (C - E - G - C - E)' },
-            'G':  { notes: [98.00, 123.47, 146.83, 196.00, 246.94, 392.00], label: 'G Major (G - B - D - G - B - G)' },
-            'Am': { notes: [110.00, 164.81, 220.00, 261.63, 329.63], label: 'A Minor (A - E - A - C - E)' },
-            'F':  { notes: [87.31, 130.81, 174.61, 220.00, 261.63, 349.23], label: 'F Major (F - C - F - A - C - F)' }
+        const chords = {
+            C: [130.81, 164.81, 196.00, 261.63, 329.63],
+            G: [98.00, 123.47, 146.83, 196.00, 246.94, 392.00],
+            Am: [110.00, 164.81, 220.00, 261.63, 329.63],
+            F: [87.31, 130.81, 174.61, 220.00, 261.63, 349.23]
         };
 
-        function pluckString(freq, startTime) {
-            const osc1 = audioCtx.createOscillator();
-            const osc2 = audioCtx.createOscillator();
-            const filter = audioCtx.createBiquadFilter();
-            const gainNode = audioCtx.createGain();
-
-            osc1.type = 'triangle';
-            osc2.type = 'sawtooth';
-            osc1.frequency.setValueAtTime(freq, startTime);
-            osc2.frequency.setValueAtTime(freq, startTime);
-
-            filter.type = 'lowpass';
-            filter.frequency.setValueAtTime(2200, startTime);
-            filter.frequency.exponentialRampToValueAtTime(380, startTime + 1.4);
-
-            gainNode.gain.setValueAtTime(0.001, startTime);
-            gainNode.gain.linearRampToValueAtTime(0.14, startTime + 0.015);
-            gainNode.gain.exponentialRampToValueAtTime(0.0008, startTime + 1.8);
-
-            osc1.connect(filter);
-            osc2.connect(filter);
-            filter.connect(gainNode);
-            gainNode.connect(audioCtx.destination);
-
-            osc1.start(startTime);
-            osc2.start(startTime);
-            osc1.stop(startTime + 1.85);
-            osc2.stop(startTime + 1.85);
-        }
-
-        function playChord(chordName) {
-            if (!audioCtx) {
-                audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-            }
-            if (audioCtx.state === 'suspended') {
-                audioCtx.resume();
-            }
-
-            const chord = chordDefinitions[chordName];
-            if (!chord) return;
-
+        function playChord(name) {
+            if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+            if (audioCtx.state === 'suspended') audioCtx.resume();
             const now = audioCtx.currentTime;
-            chord.notes.forEach((freq, idx) => {
-                pluckString(freq, now + idx * 0.045);
+            chords[name].forEach((freq, i) => {
+                const osc = audioCtx.createOscillator();
+                const gain = audioCtx.createGain();
+                osc.type = 'triangle';
+                osc.frequency.setValueAtTime(freq, now + i * 0.04);
+                gain.gain.setValueAtTime(0.15, now + i * 0.04);
+                gain.gain.exponentialRampToValueAtTime(0.001, now + i * 0.04 + 1.4);
+                osc.connect(gain);
+                gain.connect(audioCtx.destination);
+                osc.start(now + i * 0.04);
+                osc.stop(now + i * 0.04 + 1.45);
             });
-
-            const statusEl = document.getElementById('chord-status');
-            statusEl.textContent = `🎵 正在彈奏：${chord.label}`;
+            document.getElementById('chord-status').textContent = `🎵 正在彈奏：${name} 和弦`;
         }
 
         function playProgression() {
-            const seq = ['C', 'G', 'Am', 'F'];
-            seq.forEach((chord, idx) => {
-                setTimeout(() => playChord(chord), idx * 950);
-            });
+            ['C', 'G', 'Am', 'F'].forEach((c, i) => setTimeout(() => playChord(c), i * 900));
         }
 
-        // 5. Interactive Basketball Shooting Mini-Game
-        const bballCanvas = document.getElementById('basketball-canvas');
-        const bballCtx = bballCanvas.getContext('2d');
-        const shotCursor = document.getElementById('shot-cursor');
-        const scoreEl = document.getElementById('bball-score');
-        const streakEl = document.getElementById('bball-streak');
-        const feedbackEl = document.getElementById('bball-feedback');
+        // 籃球小遊戲
+        const bCanvas = document.getElementById('basketball-canvas');
+        const bCtx = bCanvas.getContext('2d');
+        const cursorEl = document.getElementById('shot-cursor');
+        let cursorPos = 0, cursorDir = 1, score = 0, ballAnim = null;
 
-        let cursorPos = 0;
-        let cursorDir = 1;
-        let bballScore = 0;
-        let bballStreak = 0;
-        let ballAnim = null;
-
-        function resizeBballCanvas() {
-            const rect = bballCanvas.getBoundingClientRect();
-            bballCanvas.width = rect.width || 360;
-            bballCanvas.height = rect.height || 144;
+        function resizeCourt() {
+            bCanvas.width = bCanvas.clientWidth || 320;
+            bCanvas.height = bCanvas.clientHeight || 112;
         }
-        window.addEventListener('resize', resizeBballCanvas);
-        resizeBballCanvas();
+        window.addEventListener('resize', resizeCourt);
+        resizeCourt();
 
-        function updateBballLoop() {
-            const speed = 1.4 + Math.min(bballStreak * 0.15, 1.5);
-            cursorPos += cursorDir * speed;
-            if (cursorPos >= 98) {
-                cursorPos = 98;
-                cursorDir = -1;
-            } else if (cursorPos <= 0) {
-                cursorPos = 0;
-                cursorDir = 1;
-            }
-            shotCursor.style.left = cursorPos + '%';
+        function loopBasketball() {
+            cursorPos += cursorDir * 1.6;
+            if (cursorPos >= 98) { cursorPos = 98; cursorDir = -1; }
+            if (cursorPos <= 0) { cursorPos = 0; cursorDir = 1; }
+            cursorEl.style.left = cursorPos + '%';
 
-            drawCourt();
-            requestAnimationFrame(updateBballLoop);
-        }
+            const w = bCanvas.width, h = bCanvas.height;
+            const hoopX = w - 55, hoopY = 46;
+            bCtx.clearRect(0, 0, w, h);
 
-        function drawCourt() {
-            const w = bballCanvas.width;
-            const h = bballCanvas.height;
-            bballCtx.clearRect(0, 0, w, h);
+            // 籃板與籃框
+            bCtx.fillStyle = '#475569';
+            bCtx.fillRect(w - 30, 16, 5, 42);
+            bCtx.strokeStyle = '#f97316';
+            bCtx.lineWidth = 3.5;
+            bCtx.beginPath();
+            bCtx.moveTo(hoopX - 15, hoopY);
+            bCtx.lineTo(hoopX + 15, hoopY);
+            bCtx.stroke();
 
-            bballCtx.strokeStyle = 'rgba(148, 163, 184, 0.2)';
-            bballCtx.lineWidth = 2;
-            bballCtx.beginPath();
-            bballCtx.moveTo(0, h - 16);
-            bballCtx.lineTo(w, h - 16);
-            bballCtx.stroke();
-
-            const hoopX = w - 65;
-            const hoopY = 58;
-
-            bballCtx.fillStyle = '#334155';
-            bballCtx.fillRect(w - 38, 22, 6, 52);
-
-            bballCtx.strokeStyle = '#f97316';
-            bballCtx.lineWidth = 4;
-            bballCtx.beginPath();
-            bballCtx.moveTo(hoopX - 18, hoopY);
-            bballCtx.lineTo(hoopX + 18, hoopY);
-            bballCtx.stroke();
-
-            bballCtx.strokeStyle = 'rgba(255, 255, 255, 0.45)';
-            bballCtx.lineWidth = 1.2;
-            for (let i = -14; i <= 14; i += 7) {
-                bballCtx.beginPath();
-                bballCtx.moveTo(hoopX + i, hoopY + 2);
-                bballCtx.lineTo(hoopX + i * 0.65, hoopY + 24);
-                bballCtx.stroke();
-            }
-
-            let bx = 52;
-            let by = h - 30;
-
+            // 籃球軌跡
+            let bx = 42, by = h - 22;
             if (ballAnim) {
-                ballAnim.t += 0.045;
+                ballAnim.t += 0.05;
                 const t = Math.min(ballAnim.t, 1);
-                bx = 52 + (ballAnim.targetX - 52) * t;
-                const arcHeight = 68;
-                by = (h - 30) * (1 - t) + ballAnim.targetY * t - Math.sin(t * Math.PI) * arcHeight;
-
-                if (t >= 1) {
-                    ballAnim = null;
-                }
+                bx = 42 + (ballAnim.tx - 42) * t;
+                by = (h - 22) * (1 - t) + ballAnim.ty * t - Math.sin(t * Math.PI) * 52;
+                if (t >= 1) ballAnim = null;
             }
+            bCtx.fillStyle = '#f97316';
+            bCtx.beginPath();
+            bCtx.arc(bx, by, 9, 0, Math.PI * 2);
+            bCtx.fill();
 
-            bballCtx.fillStyle = '#f97316';
-            bballCtx.beginPath();
-            bballCtx.arc(bx, by, 11, 0, Math.PI * 2);
-            bballCtx.fill();
-            bballCtx.strokeStyle = '#090a0f';
-            bballCtx.lineWidth = 1.5;
-            bballCtx.stroke();
+            requestAnimationFrame(loopBasketball);
         }
+        loopBasketball();
 
         function shootBasketball() {
             if (ballAnim) return;
-            const w = bballCanvas.width;
-            const hoopX = w - 65;
-            const hoopY = 58;
-
-            const isSwish = cursorPos >= 42 && cursorPos <= 58;
-            const isRimOut = !isSwish && cursorPos >= 32 && cursorPos <= 68;
-
-            if (isSwish) {
-                bballScore += 3;
-                bballStreak += 1;
-                scoreEl.textContent = bballScore;
-                streakEl.textContent = bballStreak;
-                feedbackEl.textContent = bballStreak >= 3 ? `🔥 火熱手感！空心三分 (${bballStreak}連進)` : '🏀 空心入網！+3 分';
-                feedbackEl.className = 'absolute top-2 left-3 text-xs font-mono font-bold text-emerald-400 pointer-events-none';
-                ballAnim = { t: 0, targetX: hoopX, targetY: hoopY + 14 };
+            const hoopX = bCanvas.width - 55, hoopY = 46;
+            const hit = cursorPos >= 42 && cursorPos <= 58;
+            const fb = document.getElementById('bball-feedback');
+            if (hit) {
+                score += 3;
+                document.getElementById('bball-score').textContent = score;
+                fb.textContent = '🏀 空心三分！+3 分';
+                fb.className = 'absolute top-2 left-3 text-xs font-mono text-emerald-400';
+                ballAnim = { t: 0, tx: hoopX, ty: hoopY + 12 };
             } else {
-                bballStreak = 0;
-                streakEl.textContent = 0;
-                feedbackEl.textContent = isRimOut ? '💥 刷框而出！差一點點' : '💨 力道偏了，再試一球（不用跑去撿球）';
-                feedbackEl.className = 'absolute top-2 left-3 text-xs font-mono font-bold text-rose-400 pointer-events-none';
-                ballAnim = { t: 0, targetX: hoopX + (cursorPos < 42 ? -28 : 20), targetY: hoopY - 12 };
+                fb.textContent = '💨 沒進，再試一球！';
+                fb.className = 'absolute top-2 left-3 text-xs font-mono text-rose-400';
+                ballAnim = { t: 0, tx: hoopX - 22, ty: hoopY - 10 };
             }
         }
-        updateBballLoop();
 
-        // 6. Copy to Clipboard (with sandbox fallback) & Contact Form Feedback
-        function showCopyToast(message) {
+        // 複製與表單回饋
+        function copyText(text) {
+            navigator.clipboard?.writeText(text);
             const toast = document.getElementById('copy-toast');
-            toast.textContent = `✓ ${message}`;
             toast.classList.remove('hidden');
-            setTimeout(() => toast.classList.add('hidden'), 2500);
-        }
-
-        function copyText(text, message) {
-            if (navigator.clipboard && navigator.clipboard.writeText) {
-                navigator.clipboard.writeText(text).then(() => {
-                    showCopyToast(message);
-                }).catch(() => {
-                    fallbackCopy(text, message);
-                });
-            } else {
-                fallbackCopy(text, message);
-            }
-        }
-
-        function fallbackCopy(text, message) {
-            const temp = document.createElement('textarea');
-            temp.value = text;
-            document.body.appendChild(temp);
-            temp.select();
-            document.execCommand('copy');
-            document.body.removeChild(temp);
-            showCopyToast(message);
+            setTimeout(() => toast.classList.add('hidden'), 2000);
         }
 
         document.getElementById('contact-form').addEventListener('submit', (e) => {
             e.preventDefault();
-            const feedback = document.getElementById('form-feedback');
-            feedback.classList.remove('hidden');
+            const fb = document.getElementById('form-feedback');
+            fb.classList.remove('hidden');
             e.target.reset();
-            setTimeout(() => feedback.classList.add('hidden'), 5000);
+            setTimeout(() => fb.classList.add('hidden'), 4000);
         });
-
-        // 7. Interactive Particle Canvas Background
-        const canvas = document.getElementById('particle-canvas');
-        const ctx = canvas.getContext('2d');
-        let particles = [];
-
-        function initParticles() {
-            canvas.width = window.innerWidth;
-            canvas.height = window.innerHeight;
-            particles = [];
-            const count = Math.min(Math.floor((canvas.width * canvas.height) / 18000), 75);
-            const colors = ['#8b5cf6', '#06b6d4', '#ec4899'];
-
-            for (let i = 0; i < count; i++) {
-                particles.push({
-                    x: Math.random() * canvas.width,
-                    y: Math.random() * canvas.height,
-                    vx: (Math.random() - 0.5) * 0.6,
-                    vy: (Math.random() - 0.5) * 0.6,
-                    radius: Math.random() * 2 + 1,
-                    color: colors[i % colors.length]
-                });
-            }
-        }
-
-        window.addEventListener('resize', initParticles);
-
-        function animateParticles() {
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-            for (let i = 0; i < particles.length; i++) {
-                const p = particles[i];
-                p.x += p.vx;
-                p.y += p.vy;
-
-                if (p.x < 0 || p.x > canvas.width) p.vx *= -1;
-                if (p.y < 0 || p.y > canvas.height) p.vy *= -1;
-
-                ctx.beginPath();
-                ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
-                ctx.fillStyle = p.color;
-                ctx.fill();
-
-                for (let j = i + 1; j < particles.length; j++) {
-                    const p2 = particles[j];
-                    const dx = p.x - p2.x;
-                    const dy = p.y - p2.y;
-                    const dist = Math.sqrt(dx * dx + dy * dy);
-
-                    if (dist < 130) {
-                        ctx.beginPath();
-                        ctx.strokeStyle = `rgba(139, 92, 246, ${0.18 * (1 - dist / 130)})`;
-                        ctx.lineWidth = 0.8;
-                        ctx.moveTo(p.x, p.y);
-                        ctx.lineTo(p2.x, p2.y);
-                        ctx.stroke();
-                    }
-                }
-            }
-
-            requestAnimationFrame(animateParticles);
-        }
-
-        initParticles();
-        animateParticles();
     </script>
 </body>
 </html>
